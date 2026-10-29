@@ -18,9 +18,12 @@ while True:
     print("Заповнення: ", (round(usage_percent, 1)))
     if current_status != previous_status:
         if current_status :
-            print("Місця на диску критично мало")
+            message = "Місця на диску критично мало"
         else:
-            print("Місця на диску достатньо")
+            message = "Місця на диску достатньо"
+        print(message)
+        with open("events.log", "a", encoding="utf-8") as file:
+            file.write(datetime.now().strftime("%d.%m.%Y %H:%M:%S | ") + message + "\n")
     previous_status = current_status
     time.sleep(120)
 
