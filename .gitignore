@@ -12,3 +12,6 @@ __pycache__/
 # Файли з потенційними секретами
 .env
 .env.*
+
+# Runtime logs
+*.log
