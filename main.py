@@ -2,14 +2,14 @@ import shutil
 import time
 from datetime import datetime
 previous_status = None
+togig = 1024 ** 3
 
 while True:
-
     print("Час перевірки:", datetime.now().strftime("%d.%m.%Y %H:%M:%S"))
     disk = shutil.disk_usage("/")
-    total = disk.total / (1024 * 1024 * 1024)
-    used = disk.used / (1024 * 1024 * 1024)
-    free = disk.free / (1024 * 1024 * 1024)
+    total = disk.total / togig
+    used = disk.used / togig
+    free = disk.free / togig
     usage_percent = used / (used + free) * 100
     current_status = usage_percent >= 90
     print("Загалом місця:",round(total, 2), "GiB")
