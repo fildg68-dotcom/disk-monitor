@@ -10,13 +10,19 @@ def is_disk_full(usage_percent):
     else:
         return False
 
+def calculate_usage(used, free):
+    if used + free == 0:
+        return 0
+    else:
+        return used / (used + free) * 100
+
 while True:
     print("Час перевірки:", datetime.now().strftime("%d.%m.%Y %H:%M:%S"))
     disk = shutil.disk_usage("/")
     total = disk.total / togig
     used = disk.used / togig
     free = disk.free / togig
-    usage_percent = used / (used + free) * 100
+    usage_percent = calculate_usage(used, free)
     current_status = is_disk_full(usage_percent)
     print("Загалом місця:", round(total, 2), "GiB")
     print("Використовується:", round(used, 2),"GiB")
@@ -32,7 +38,3 @@ while True:
             file.write(datetime.now().strftime("%d.%m.%Y %H:%M:%S | ") + message + "\n")
     previous_status = current_status
     time.sleep(120)
-
-
-
-
